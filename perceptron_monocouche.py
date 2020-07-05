@@ -19,13 +19,12 @@ class Perceptron:
         self.epoch=epoch
         self.shape=self.x.shape
         self.weight_list=[]
-        self.activate_function=activate_function
-
-    
+        self.activate_function=activate_function    
 
     def sigmoid(self,x):
         """Fonction d'activation sigmoid"""
         return 1/(1+math.exp(-x))
+
     def heavyside(self,x):
         """Fonction d'activation heavyside"""
         return 1 if x>=0 else 0
@@ -52,6 +51,7 @@ class Perceptron:
         print(summ)
         print(self.weight)
         return summ
+    
     def init_weigth(self):
         """Cette fonction initialize les poids """
         size=self.x.shape[1]
@@ -64,8 +64,7 @@ class Perceptron:
         Notre perceptron"""
         lenght=len(self.weight)
         for i in list(range(lenght)):
-            w=self.weight[i]
-            self.weight[i]=w*self.learning_rate*current_error*self.x[line][i]
+            self.weight[i]+=self.learning_rate*current_error*self.x[line][i]
 
     def train(self):
         """Fonction who make training for how data """
